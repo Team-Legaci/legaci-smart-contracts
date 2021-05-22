@@ -134,7 +134,7 @@ pub contract LegaciCollectible: NonFungibleToken {
         //     collectionId: The UUID string of the Legaci Collection ID that the Collectible references
         //     unitIds: An array containing UUID strings of the Legaci Unit ID that the Collectible references
         //
-        // Returns: Collection object that contains all the Moments that were minted
+        // Returns: Collection object that contains all the Legaci Collectibles that were minted
         //
         pub fun batchMintLegaciCollectible(collectionId: String, unitIds: [String]): @Collection {
             let newCollection <- create Collection()
@@ -380,7 +380,7 @@ pub contract LegaciCollectible: NonFungibleToken {
         //
         // Note: This only allows the caller to read the ID of the NFT,
         // not any Legaci Collectible specific data. Please use borrowLegaciCollectible
-        //  to read Moment data.
+        //  to read Legaci Collectible data.
         //
         pub fun borrowNFT(id: UInt64): &NonFungibleToken.NFT {
             return &self.ownedNFTs[id] as &NonFungibleToken.NFT
