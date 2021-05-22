@@ -37,3 +37,11 @@ flow transactions send ./transactions/create_brand.cdc \
 ```
 
 Read more [https://docs.onflow.org/flow-cli/send-transactions](https://docs.onflow.org/flow-cli/send-transactions).
+
+
+flow transactions send ./transactions/mint_legaci_collectible.cdc \
+    --arg String:"7d8ceef0-b481-45c8-973b-2846f288388e" \
+    --arg String:"e66b99d2-6e58-4223-ad71-050d12878f73" \
+    --arg String:"ca8ae5f9-1436-435d-9e2c-8e9289724fa5" \
+    --arg Address:0xf8d6e0586b0a20c7 \
+    --signer emulator-account

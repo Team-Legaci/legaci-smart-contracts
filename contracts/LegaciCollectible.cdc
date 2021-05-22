@@ -225,7 +225,7 @@ pub contract LegaciCollectible: NonFungibleToken {
         // Returns: The number of minted collectibles from the Brand 
         // stored in the Legaci Collectible smart contract resource
         pub fun getBrandMintedCollectibles(brandId: String): UInt64? {
-            // Don't force a revert if the setID is invalid
+            // Don't force a revert if the brandId is invalid
             return LegaciCollectible.brands[brandId]?.numberOfMintedCollectibles
         }
 
