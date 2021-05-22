@@ -9,16 +9,10 @@
 		"NonFungibleToken": {
 			"source": "./contracts/NonFungibleToken.cdc",
 			"aliases": {
-				"emulator": "f8d6e0586b0a20c7",
 				"testnet": "631e88ae7f1d7c20"
 			}
 		},
-		"LegaciCollectible": {
-			"source": "./contracts/LegaciCollectible.cdc",
-			"aliases": {
-				"emulator": "f8d6e0586b0a20c7"
-			}
-		}
+		"LegaciCollectible": "./contracts/LegaciCollectible.cdc"
 	},
 	"networks": {
 		"emulator": "127.0.0.1:3569",
@@ -31,5 +25,12 @@
 			"keys": "b732e1d8c421ad2083f514df73dbfb1d6de149b2a5a7c864bff9a70f4a50ea3c"
 		}
 	},
-	"deployments": {}
+	"deployments": {
+		"emulator": {
+			"emulator-account": [
+				"NonFungibleToken",
+				"LegaciCollectible"
+			]
+		}
+	}
 }

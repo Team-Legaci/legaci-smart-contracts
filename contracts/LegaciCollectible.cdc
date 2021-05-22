@@ -217,6 +217,18 @@ pub contract LegaciCollectible: NonFungibleToken {
             LegaciCollectible.brands[newBrand.brandId] <-! newBrand
         }
 
+        // getBrandName returns the name that the specified Brand
+        // is associated with.
+        // 
+        // Parameters: brandId: The id of the Set that is being searched
+        //
+        // Returns: The number of minted collectibles from the Brand 
+        // stored in the Legaci Collectible smart contract resource
+        pub fun getBrandMintedCollectibles(brandId: String): UInt64? {
+            // Don't force a revert if the setID is invalid
+            return LegaciCollectible.brands[brandId]?.numberOfMintedCollectibles
+        }
+
         // borrowBrand returns a reference to a brand in the Legaci
         // Collectible contract so that the admin can call methods on it
         //
@@ -412,6 +424,13 @@ pub contract LegaciCollectible: NonFungibleToken {
     //
     pub fun createEmptyCollection(): @NonFungibleToken.Collection {
         return <-create LegaciCollectible.Collection()
+    }
+
+    // getBrands returns all the brands
+    //
+    // Returns: An array of all the plays that have been created
+    pub fun getBrands(): [String] {
+        return LegaciCollectible.brands.keys
     }
 
     // -----------------------------------------------------------------------
