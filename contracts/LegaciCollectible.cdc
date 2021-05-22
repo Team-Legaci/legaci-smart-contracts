@@ -36,9 +36,9 @@
     NFT Contract defined at these addresses:
     https://docs.onflow.org/core-contracts/non-fungible-token
 */
-import NonFungibleToken from 0x631e88ae7f1d7c20
+import NonFungibleToken from "./NonFungibleToken.cdc"
 
-pub contract LegaciCollecible: NonFungibleToken {
+pub contract LegaciCollectible: NonFungibleToken {
 
     // -----------------------------------------------------------------------
     // Legaci Collecible contract Events
@@ -99,11 +99,11 @@ pub contract LegaciCollecible: NonFungibleToken {
         pub let brandId: String
 
         // Number of Collectibles that have been minted by the Brand.
-        pub var numberOfUnits: UInt64
+        pub var numberOfMintedCollectibles: UInt64
 
         init(brandId: String) {
             self.brandId = brandId
-            self.numberMintedByBrand = 0
+            self.numberOfMintedCollectibles = 0
         }
 
         // mintCollectible mints a new Legaci Collectible and returns the newly minted Collectible
@@ -119,30 +119,30 @@ pub contract LegaciCollecible: NonFungibleToken {
         // 
         pub fun mintLegaciCollectible(collectionId: String, unitId: String): @NFT {
             // Mint the new moment
-            let newLegaciCollectible: @NFT <- create NFT(serialNumber: numInPlay + UInt32(1),
-                                              playID: playID,
-                                              setID: self.setID)
+            let newLegaciCollectible: @NFT <- create NFT(brandId: self.brandId, collectionId: collectionId, unitId: unitId)
 
             // Increment the count of Moments minted for this Play
-            self.numberMintedByBrand = self.numberMintedByBrand + UInt64(1)
+            self.numberOfMintedCollectibles = self.numberOfMintedCollectibles + UInt64(1)
 
             return <-newLegaciCollectible
         }
 
-        // batchMintMoment mints an arbitrary quantity of Moments 
+        // batchMintLegaciCollectible mints an arbitrary quantity of Legaci Collectibles 
         // and returns them as a Collection
         //
-        // Parameters: playID: the ID of the Play that the Moments are minted for
-        //             quantity: The quantity of Moments to be minted
+        // Parameters:
+        //     collectionId: The UUID string of the Legaci Collection ID that the Collectible references
+        //     unitIds: An array containing UUID strings of the Legaci Unit ID that the Collectible references
         //
         // Returns: Collection object that contains all the Moments that were minted
         //
-        pub fun batchMintMoment(playID: UInt32, quantity: UInt64): @Collection {
+        pub fun batchMintLegaciCollectible(collectionId: String, unitIds: [String]): @Collection {
             let newCollection <- create Collection()
 
             var i: UInt64 = 0
+            var quantity = UInt64(unitIds.length)
             while i < quantity {
-                newCollection.deposit(token: <-self.mintMoment(playID: playID))
+                newCollection.deposit(token: <-self.mintLegaciCollectible(collectionId: collectionId, unitId: unitIds[i]))
                 i = i + UInt64(1)
             }
 
@@ -181,9 +181,9 @@ pub contract LegaciCollecible: NonFungibleToken {
 
         init(brandId: String, collectionId: String, unitId: String) {
             // Increment the global Legaci Collectibles IDs
-            LegaciCollecible.totalSupply = LegaciCollecible.totalSupply + UInt64(1)
+            LegaciCollectible.totalSupply = LegaciCollectible.totalSupply + UInt64(1)
 
-            self.id = LegaciCollecible.totalSupply
+            self.id = LegaciCollectible.totalSupply
 
             // Set the metadata struct
             self.data = LegaciCollectibleData(brandId: brandId, collectionId: collectionId, unitId: unitId)
@@ -214,7 +214,7 @@ pub contract LegaciCollecible: NonFungibleToken {
             var newBrand <- create Brand(brandId: brandId)
 
             // Store it in the sets mapping field
-            LegaciCollecible.brands[newBrand.brandId] <-! newBrand
+            LegaciCollectible.brands[newBrand.brandId] <-! newBrand
         }
 
         // borrowBrand returns a reference to a brand in the Legaci
@@ -228,12 +228,12 @@ pub contract LegaciCollecible: NonFungibleToken {
         //
         pub fun borrowBrand(brandId: String): &Brand {
             pre {
-                LegaciCollecible.brands[brandId] != nil: "Cannot borrow Brand: The Brand doesn't exist"
+                LegaciCollectible.brands[brandId] != nil: "Cannot borrow Brand: The Brand doesn't exist"
             }
             
             // Get a reference to the Set and return it
             // use `&` to indicate the reference to the object and type
-            return &LegaciCollecible.brands[brandId] as &Brand
+            return &LegaciCollectible.brands[brandId] as &Brand
         }
 
         // createNewAdmin creates a new Admin resource
@@ -251,7 +251,7 @@ pub contract LegaciCollecible: NonFungibleToken {
         pub fun batchDeposit(tokens: @NonFungibleToken.Collection)
         pub fun getIDs(): [UInt64]
         pub fun borrowNFT(id: UInt64): &NonFungibleToken.NFT
-        pub fun borrowLegaciCollectible(id: UInt64): &LegaciCollecible.NFT? {
+        pub fun borrowLegaciCollectible(id: UInt64): &LegaciCollectible.NFT? {
             // If the result isn't nil, the id of the returned reference
             // should be the same as the argument to the function
             post {
@@ -319,7 +319,7 @@ pub contract LegaciCollecible: NonFungibleToken {
             
             // Cast the deposited token as a Legaci Collectible NFT to make sure
             // it is the correct type
-            let token <- token as! @LegaciCollecible.NFT
+            let token <- token as! @LegaciCollectible.NFT
 
             // Get the token's ID
             let id = token.id
@@ -384,10 +384,10 @@ pub contract LegaciCollecible: NonFungibleToken {
         // Parameters: id: The ID of the NFT to get the reference for
         //
         // Returns: A reference to the NFT
-        pub fun borrowLegaciCollecible(id: UInt64): &LegaciCollecible.NFT? {
+        pub fun borrowLegaciCollectible(id: UInt64): &LegaciCollectible.NFT? {
             if self.ownedNFTs[id] != nil {
                 let ref = &self.ownedNFTs[id] as auth &NonFungibleToken.NFT
-                return ref as! &LegaciCollecible.NFT
+                return ref as! &LegaciCollectible.NFT
             } else {
                 return nil
             }
@@ -411,7 +411,7 @@ pub contract LegaciCollecible: NonFungibleToken {
     // Legaci Collectibles in transactions.
     //
     pub fun createEmptyCollection(): @NonFungibleToken.Collection {
-        return <-create LegaciCollecible.Collection()
+        return <-create LegaciCollectible.Collection()
     }
 
     // -----------------------------------------------------------------------

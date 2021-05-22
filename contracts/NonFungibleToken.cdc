@@ -1,7 +1,6 @@
 /**
 
-## The Flow Non-Fungible Token standard (Copy and Pasted 05/22/2021)
-## Live source code https://github.com/onflow/flow-nft/edit/master/contracts/NonFungibleToken.cdc
+## The Flow Non-Fungible Token standard
 
 ## `NonFungibleToken` contract interface
 
