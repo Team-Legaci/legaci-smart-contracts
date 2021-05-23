@@ -1,4 +1,4 @@
-import LegaciCollectible from 0xf8d6e0586b0a20c7
+import LegaciCollectible from 0xa5ed1fedf146ddb6
 
 // This is the script to get a list of all the Legaci Collectible ids an account owns
 // Just change the argument to `getAccount` to whatever account you want

@@ -1,4 +1,4 @@
-import LegaciCollectible from 0xf8d6e0586b0a20c7
+import LegaciCollectible from 0xa5ed1fedf146ddb6
 
 // This script returns an array of the brandIds
 

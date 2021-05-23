@@ -38,7 +38,16 @@ flow transactions send ./transactions/create_brand.cdc \
 
 Read more [https://docs.onflow.org/flow-cli/send-transactions](https://docs.onflow.org/flow-cli/send-transactions).
 
-### Example Usages
+### TestNet Deployment
+Deploy to the Flow testnet via:
+```
+flow project deploy --network=testnet
+```
+
+### Example Scripts and Transactions Usage
+For all the following, run commands with the `--network=testnet` to run commands on the Flow testnet.
+
+#### Ran on Flow Emulator
 ```
 flow transactions send ./transactions/mint_legaci_collectible.cdc \
     --arg String:"7d8ceef0-b481-45c8-973b-2846f288388e" \
@@ -57,4 +66,28 @@ flow scripts execute ./scripts/get_metadata.cdc \
 ```
 flow scripts execute ./scripts/get_legaci_collectible_ids.cdc \
     --arg Address:0xf8d6e0586b0a20c7
+```
+
+#### Ran on Flow Testnet
+```
+flow transactions send ./transactions/mint_legaci_collectible.cdc \
+    --arg String:"7d8ceef0-b481-45c8-973b-2846f288388e" \
+    --arg String:"e66b99d2-6e58-4223-ad71-050d12878f73" \
+    --arg String:"78122c79-b472-403d-b631-028d137e276f" \
+    --arg Address:0xa5ed1fedf146ddb6 \
+    --signer legaci-account \
+    --network=testnet
+```
+
+```
+flow transactions send ./transactions/create_brand.cdc \
+    --arg String:"7d8ceef0-b481-45c8-973b-2846f288388e" \
+    --signer legaci-account \
+    --network=testnet
+```
+
+```
+flow scripts execute ./scripts/get_legaci_collectible_ids.cdc \
+    --arg Address:0xa5ed1fedf146ddb6 \
+    --network=testnet
 ```

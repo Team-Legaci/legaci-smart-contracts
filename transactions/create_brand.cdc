@@ -1,4 +1,4 @@
-import LegaciCollectible from 0xf8d6e0586b0a20c7
+import LegaciCollectible from 0xa5ed1fedf146ddb6
 
 // This transaction is for the admin to create a new brand resource
 // and store it in the Legaci Collectible smart contract
