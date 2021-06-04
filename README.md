@@ -11,6 +11,7 @@ Navigate to `/contracts` to view code used to power our Legaci Collectible NFT S
 Interacting with the Smart Contract is done in scripts (similar to GraphQL queries) and transactions (similar to Graphql mutations). Navigate to `/scripts` and `/transactions` to view this code.
 
 ### Testing
+Be sure to have run `yarn` to install all required dependencies.
 
 Testing our flow blockchain code can be done with two commands. Start the Flow blockchain emulator with:
 
