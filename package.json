@@ -1,0 +1,71 @@
+{
+  "name": "legaci-smart-contracts",
+  "version": "1.1.0",
+  "description": "Legaci Collectibles Flow Blockchain Integration",
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "flow"
+  ],
+  "engines": {
+    "node": "15.x"
+  },
+  "scripts": {
+    "test": "jest --forceExit --detectOpenHandles",
+    "build": "tsc",
+    "flow:emulator": "cd src/contracts; flow emulator start -v",
+    "flow:test": "cd src/contracts; flow project deploy; yarn test"
+  },
+  "dependencies": {
+    "@mux/mux-node": "^3.1.0",
+    "@onflow/fcl": "^0.0.70",
+    "@onflow/sdk": "^0.0.46",
+    "@onflow/types": "^0.0.4",
+    "@sendgrid/mail": "^7.3.0",
+    "@types/elliptic": "^6.4.12",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "connection-string": "^1.0.1",
+    "core-js": "^2.5.7",
+    "dotenv": "^6.1.0",
+    "elliptic": "^6.5.4",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "graphql-upload": "^11.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.1",
+    "lodash": "^4.17.19",
+    "module-alias": "^2.2.2",
+    "moment": "^2.27.0",
+    "morgan": "^1.9.1",
+    "objection": "^2.1.3",
+    "sha3": "2.1.3",
+    "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@types/axios": "^0.14.0",
+    "@types/body-parser": "^1.19.0",
+    "@types/express": "^4.17.11",
+    "@types/jest": "^26.0.3",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/knex": "^0.14.26",
+    "@types/lodash": "^4.14.170",
+    "@types/morgan": "^1.7.35",
+    "@types/node": "^10.11.7",
+    "@types/verror": "^1.10.4",
+    "ava": "^0.25.0",
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.7",
+    "prettier": "^1.14.3",
+    "ts-jest": "^26.1.1",
+    "ts-node": "^7.0.1",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-plugin-prettier": "^2.0.0",
+    "typescript": "^4.2.4"
+  },
+  "resolutions": {
+    "**/**/fs-capacitor": "^6.2.0"
+  }
+}

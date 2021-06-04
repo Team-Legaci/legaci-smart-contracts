@@ -1,0 +1,42 @@
+{
+  "emulators": {
+    "default": {
+      "port": 3569,
+      "serviceAccount": "emulator-account"
+    }
+  },
+  "contracts": {
+    "NonFungibleToken": {
+      "source": "./NonFungibleToken.cdc",
+      "aliases": {
+        "testnet": "631e88ae7f1d7c20"
+      }
+    },
+    "LegaciCollectible": {
+      "source": "./LegaciCollectible.cdc",
+      "aliases": {
+        "testnet": "$FLOW_SMART_CONTRACT_PROFILE"
+      }
+    }
+  },
+  "networks": {
+    "emulator": "127.0.0.1:3569",
+    "mainnet": "access.mainnet.nodes.onflow.org:9000",
+    "testnet": "access.devnet.nodes.onflow.org:9000"
+  },
+  "accounts": {
+    "emulator-account": {
+      "address": "f8d6e0586b0a20c7",
+      "keys": "b732e1d8c421ad2083f514df73dbfb1d6de149b2a5a7c864bff9a70f4a50ea3c"
+    },
+    "legaci-account": {
+      "address": "$FLOW_SMART_CONTRACT_PROFILE",
+      "keys": "$FLOW_ACCOUNT_PRIVATE_KEY"
+    }
+  },
+  "deployments": {
+    "emulator": {
+      "emulator-account": ["NonFungibleToken", "LegaciCollectible"]
+    }
+  }
+}
