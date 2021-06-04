@@ -4,11 +4,11 @@ Legaci leverages the [Flow](https://onflow.org/) blockchain to power our NFT imp
 
 ### Smart Contract Code
 
-Navigate to `/contracts` to view code used to power our Legaci Collectible NFT Smart Contract.
+Navigate to `/src/contracts` to view code used to power our Legaci Collectible NFT Smart Contract.
 
 ### Scripts and Transactions
 
-Interacting with the Smart Contract is done in scripts (similar to GraphQL queries) and transactions (similar to Graphql mutations). Navigate to `/scripts` and `/transactions` to view this code.
+Interacting with the Smart Contract is done in scripts (similar to GraphQL queries) and transactions (similar to Graphql mutations). Navigate to `/src/scripts` and `/src/transactions` to view this code.
 
 ### Testing
 Be sure to have run `yarn` to install all required dependencies.
@@ -32,9 +32,3 @@ The two commands above complete the following:
 - Run `jest` testing for Flow cadence code
 
 More details on the emulator instantiation [here](https://github.com/onflow/flow-js-testing/blob/master/docs/api.md#init).
-
-## Resources
-
-- [Apollo Server](https://www.apollographql.com/)
-- [GraphQL](https://graphql.org/)
-- [Twilio Setup](https://www.twilio.com/docs/sms/quickstart/node)
